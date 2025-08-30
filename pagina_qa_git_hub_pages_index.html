@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Processo de Trabalho — Analista de QA</title>
+  <meta name="description" content="Página simples para apresentar o processo de trabalho de um Analista de QA — pronta para publicar no GitHub Pages." />
+  <style>
+    :root{
+      --bg: #0e1116;
+      --panel:#141922;
+      --card:#191f2b;
+      --text:#e6eaf2;
+      --muted:#b8c0cc;
+      --brand:#7c5cff; /* roxo */
+      --ok:#3ccf91;
+      --warn:#ffcc66;
+      --danger:#ff6b6b;
+      --ring: 0 0 0 3px rgba(124,92,255,.25);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.15), transparent 60%),
+                  radial-gradient(1000px 500px at -10% 10%, rgba(60,207,145,.08), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      position:sticky;top:0;z-index:5;background:linear-gradient(180deg, rgba(14,17,22,.9), rgba(14,17,22,.6), transparent);
+      backdrop-filter:saturate(140%) blur(8px);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0;
+    }
+    .logo{display:flex;gap:10px;align-items:center;font-weight:700}
+    .logo .badge{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--brand),#a88bff)}
+    .logo .badge span{filter:drop-shadow(0 2px 3px rgba(0,0,0,.4))}
+    .btn{
+      background:var(--brand);color:#fff;border:0;border-radius:12px;padding:10px 14px;font-weight:600;cursor:pointer;
+      box-shadow:var(--shadow);
+    }
+    .btn:hover{filter:brightness(1.08)}
+
+    .hero{display:grid;grid-template-columns: 1.2fr .8fr;gap:28px;align-items:center;padding:36px 0}
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0));
+      border:1px solid rgba(255,255,255,.06);
+      border-radius:20px;padding:22px;box-shadow:var(--shadow)
+    }
+    .hero h1{font-size:clamp(28px, 3vw, 40px);line-height:1.15;margin:0 0 10px}
+    .hero p{color:var(--muted);margin:0 0 16px}
+    .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .kpi{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:14px}
+    .kpi small{display:block;color:var(--muted)}
+    .kpi b{font-size:20px}
+
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:18px;transition:transform .15s ease, box-shadow .15s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(124,92,255,.12)}
+    .tag{display:inline-flex;align-items:center;gap:8px;background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.25);color:#d9d2ff;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.3px}
+
+    .section{margin:32px 0}
+    .section h2{margin:0 0 8px;font-size:clamp(22px,2.2vw,28px)}
+    .muted{color:var(--muted)}
+
+    .timeline{position:relative;margin:10px 0;padding-left:10px}
+    .timeline:before{content:"";position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(#2a3140,#3b4354)}
+    .step{position:relative;display:grid;grid-template-columns:28px 1fr;gap:12px;margin:18px 0}
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--brand);position:relative;top:6px;box-shadow:0 0 0 6px rgba(124,92,255,.15)}
+    .step h3{margin:0 0 4px;font-size:18px}
+    .step p{margin:0;color:var(--muted)}
+
+    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .item{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px}
+    .tick{font-size:18px;color:var(--ok)}
+
+    .tools{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{border:1px dashed rgba(255,255,255,.25);background:transparent;color:var(--text);padding:6px 10px;border-radius:12px}
+
+    .footer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:18px;margin:18px 0 8px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+
+    /* Responsivo */
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .kpis{grid-template-columns:1fr 1fr 1fr}
+    }
+    @media (max-width: 680px){
+      .grid{grid-template-columns:1fr}
+      .checklist{grid-template-columns:1fr}
+      .kpis{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="logo"><div class="badge"><span>🧪</span></div>Analista de QA</div>
+      <a class="btn" href="#publicar">Como publicar</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="panel">
+        <span class="tag">Processo de Trabalho</span>
+        <h1>Qualidade de ponta a ponta: do planejamento à entrega</h1>
+        <p>Resumo visual do fluxo de QA, cobrindo tipos de teste, evidências, automação e métricas. Perfeito para portfólio e apresentação ao time.</p>
+        <div class="kpis">
+          <div class="kpi"><small>Confiabilidade</small><b>ISO 25010</b></div>
+          <div class="kpi"><small>Automação</small><b>Playwright / Cypress</b></div>
+          <div class="kpi"><small>APIs</small><b>Swagger / Postman</b></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="grid">
+          <div class="card">
+            <h3>🧭 Planejamento</h3>
+            <p class="muted">Escopo, riscos, 
+              critérios de aceitação e estratégia de testes.</p>
+          </div>
+          <div class="card">
+            <h3>🧩 Projeto de Testes</h3>
+            <p class="muted">Casos de teste, dados, ambientes e traçabilidade (HU → CT → Evidência).</p>
+          </div>
+          <div class="card">
+            <h3>🚦 Execução</h3>
+            <p class="muted">Funcional, Integração, Regressivo, Performance e Segurança (quando aplicável).</p>
+          </div>
+          <div class="card">
+            <h3>🪪 Evidências & Reporte</h3>
+            <p class="muted">Prints, vídeos, logs, CSV, PDFs; bugs bem descritos (passos, esperado × obtido).</p>
+          </div>
+          <div class="card">
+            <h3>🤖 Automação</h3>
+            <p class="muted">Smoke/E2E, CI/CD, dados estáveis, mocks e fixtures.</p>
+          </div>
+          <div class="card">
+            <h3>📊 Métricas</h3>
+            <p class="muted">Taxa de falhas, densidade de bugs, cobertura, tempo de ciclo e MTTR.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section class="section">
+      <h2>Fluxo resumido</h2>
+      <p class="muted">Uma visão do início ao fim para alinhar expectativas com o time e stakeholders.</p>
+      <div class="timeline panel">
+        <div class="step"><div class="dot"></div><div><h3>1) Planejar</h3><p>Alinhar escopo, riscos, critérios e Definition of Ready/Done.</p></div></div>
+        <div class="step"><div class="dot"></div><div><h3>2) Projetar & Preparar</h3><p>Casos de teste, massa de dados, ambientes, acessos e ferramentas.</p></div></div>
+        <div class="step"><div class="dot"></div><div><h3>3) Executar</h3><p>Rodar testes (manual/auto), registrar resultados e abrir defeitos bem qualificados.</p></div></div>
+        <div class="step"><div class="dot"></div><div><h3>4) Evidenciar</h3><p>Anexar evidências, logs e relatórios; manter rastreabilidade.</p></div></div>
+        <div class="step"><div class="dot"></div><div><h3>5) Medir & Melhorar</h3><p>Coletar métricas, lições aprendidas e alimentar o backlog de qualidade.</p></div></div>
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="section">
+      <h2>Checklist rápido antes do Go/No-Go</h2>
+      <div class="checklist">
+        <div class="item"><div class="tick">✔</div><div><b>Critérios de aceitação</b> mapeados e testados.</div></div>
+        <div class="item"><div class="tick">✔</div><div><b>Requisitos críticos</b> cobertos (feliz, alternativo e erro).</div></div>
+        <div class="item"><div class="tick">✔</div><div><b>Regressivo</b> mínimo com smoke validado.</div></div>
+        <div class="item"><div class="tick">✔</div><div><b>Dados sensíveis</b> anonimizados nas evidências.</div></div>
+        <div class="item"><div class="tick">✔</div><div><b>Defeitos</b> priorizados e comunicados (Jira/TestLink).</div></div>
+        <div class="item"><div class="tick">✔</div><div><b>Ambientes/feature flags</b> documentados.</div></div>
+      </div>
+    </section>
+
+    <!-- FERRAMENTAS -->
+    <section class="section">
+      <h2>Ferramentas do dia a dia</h2>
+      <p class="muted">Alguns exemplos comuns — personalize conforme seu stack.</p>
+      <div class="tools">
+        <span class="chip">Jira</span>
+        <span class="chip">TestLink</span>
+        <span class="chip">Postman</span>
+        <span class="chip">Swagger</span>
+        <span class="chip">Playwright</span>
+        <span class="chip">Cypress</span>
+        <span class="chip">JMeter</span>
+        <span class="chip">SQL</span>
+        <span class="chip">GitHub Actions</span>
+        <span class="chip">Sonar</span>
+      </div>
+    </section>
+
+    <!-- COMO PUBLICAR -->
+    <section id="publicar" class="section">
+      <h2>Como publicar no GitHub Pages</h2>
+      <ol>
+        <li>Crie um repositório público (ex.: <code>qa-processo-trabalho</code>).</li>
+        <li>Salve este arquivo como <code>index.html</code> na raiz do repositório.</li>
+        <li>Vá em <b>Settings ▸ Pages</b> → <b>Branch</b>: <i>main</i> e pasta <i>/ (root)</i> → <b>Save</b>.</li>
+        <li>Aguarde a URL do Pages (formato: <code>https://seu-usuario.github.io/qa-processo-trabalho/</code>).</li>
+      </ol>
+      <p class="muted">Dica: mantenha esta página versionada — registre melhorias do seu processo ao longo dos projetos.</p>
+    </section>
+
+    <div class="footer panel">
+      <div>🧪 Página de demonstração — Analista de QA</div>
+      <div>Feito com HTML + CSS • pronto para o GitHub Pages</div>
+    </div>
+  </main>
+</body>
+</html>
